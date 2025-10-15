@@ -1,3 +1,5 @@
+package com.pluralsight;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -24,7 +26,7 @@ public class TransactionManager {
                 String description = parts[2];
                 String vendor = parts[3];
                 double amount = Double.parseDouble(parts[4]);
-                transactions.add(new Transaction(date, amount, description, vendor, time));
+                transactions.add(new Transaction(date, time, description, vendor, amount));
             }
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());

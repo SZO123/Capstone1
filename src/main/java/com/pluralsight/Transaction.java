@@ -1,3 +1,5 @@
+package com.pluralsight;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -9,7 +11,7 @@ public class Transaction {
     private String vendor;
     private double amount;
 
-    public Transaction(LocalDate date, double amount, String vendor, String description, LocalTime time) {
+    public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.amount = amount;
         this.vendor = vendor;
