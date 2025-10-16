@@ -117,10 +117,10 @@ public class LedgerApp {
                 case 2:
                     System.out.println("Previous Month report ");
                 case 3:
-                    System.out.println("YTD report");
+                    System.out.println("YTD report ");
                     break;
                 case 4:
-                    System.out.println("Previous Year report");
+                    System.out.println("Previous Year report ");
                     break;
                 case 5:
                     System.out.print("Enter vendor name: ");
