@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Transaction {
 
@@ -11,6 +12,9 @@ public class Transaction {
     private String description;
     private String vendor;
     private double amount;
+
+    // 12-hour display format
+    private static final DateTimeFormatter displayTimeFormat = DateTimeFormatter.ofPattern("hh:mm a");
 
     // Constructor to create a transaction
     public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
@@ -44,7 +48,8 @@ public class Transaction {
 
     // Convert transaction to a string for saving or displaying
     public String toString() {
-        return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+        return date + "|" + time.format(displayTimeFormat) + "|" + description + "|" + vendor + "|" + amount;
     }
 }
 
