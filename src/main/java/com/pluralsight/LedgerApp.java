@@ -6,19 +6,31 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LedgerApp {
+    // Scanner for user input
     static Scanner scanner = new Scanner(System.in);
+
+    // CSV file name for saving/loading transactions
     static final String file_Name = "transaction.csv";
+
+    // Load all transactions at startup
     static List<Transaction> transactions = TransactionManager.loadTransactionFromFile(file_Name);
 
     public static void main(String[] args) {
         boolean endProgram = false;
+
+        // Main application loop
         while (!endProgram) {
             endProgram = displayHomeScreen();
         }
 
     }
-
+    // Displays the main menu (Home Screen)
     public static boolean displayHomeScreen () {
+        System.out.println("==========================================");
+        System.out.println("  💰 Welcome to Najib's LedgerProApp 💰     ");
+        System.out.println("    Track Deposits, Payments & Reports");
+        System.out.println("==========================================");
+
         String options = """
                 1) Add Deposit
                 2) Make Payment
@@ -29,16 +41,16 @@ public class LedgerApp {
 
         switch (choice) {
             case 1:
-                addTransaction(true);
+                addTransaction(true);  // Deposit
                 break;
             case 2:
-                addTransaction(false);
+                addTransaction(false);  // Payment
                 break;
             case 3:
-                displayLedgerScreen();
+                displayLedgerScreen();  // View Ledger menu
                 break;
             case 4:
-                return true;
+                return true;  // Exit program
             default:
                 System.out.println("Invalid choice.");
 
@@ -46,6 +58,7 @@ public class LedgerApp {
         return false;
     }
 
+    // Handles adding a deposit or payment transaction
     public static void addTransaction(boolean isDeposit) {
         System.out.print("Enter description: ");
         String description = scanner.nextLine();
@@ -53,8 +66,11 @@ public class LedgerApp {
         String vendor = scanner.nextLine();
         System.out.print("Enter amount: ");
         double amount = Double.parseDouble(scanner.nextLine());
+
+        // If payment, make amount negative
         if (!isDeposit) amount = -Math.abs(amount);
 
+        // Create and save transaction
         Transaction transaction = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, amount);
         transactions.add(transaction);
         TransactionManager.saveTransaction(file_Name, transaction);
@@ -62,6 +78,7 @@ public class LedgerApp {
         System.out.println("Transaction added successfully.");
     }
 
+    // Displays the Ledger menu with transaction filters
     public static void displayLedgerScreen() {
         boolean inLedger = true;
         while (inLedger) {
@@ -85,10 +102,10 @@ public class LedgerApp {
                     TransactionManager.displayTransaction(transactions, "PAYMENT");
                     break;
                 case 4:
-                    displayReportsMenu();
+                    displayReportsMenu();  // Jump to Reports
                     break;
                 case 5:
-                    inLedger = false;
+                    inLedger = false;  // Return to home
                     break;
                 default:
                     System.out.println("Invalid Choice.");
@@ -97,6 +114,7 @@ public class LedgerApp {
         }
     }
 
+    // Reports menu — placeholder for date-based reports
     public static void displayReportsMenu() {
         boolean inReports = true;
         while(inReports) {
@@ -138,6 +156,7 @@ public class LedgerApp {
         }
     }
 
+    // Helper method for consistent numeric input handling
     public static int getNumericChoice(String options) {
         System.out.println(options);
         return Integer.parseInt(scanner.nextLine());

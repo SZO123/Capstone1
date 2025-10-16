@@ -5,12 +5,14 @@ import java.time.LocalTime;
 
 public class Transaction {
 
+    // Transaction details
     private LocalDate date;
     private LocalTime time;
     private String description;
     private String vendor;
     private double amount;
 
+    // Constructor to create a transaction
     public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.amount = amount;
@@ -19,6 +21,7 @@ public class Transaction {
         this.time = time;
     }
 
+    // Getters for transaction details
     public LocalDate getDate() {
         return date;
     }
@@ -39,6 +42,7 @@ public class Transaction {
         return time;
     }
 
+    // Convert transaction to a string for saving or displaying
     public String toString() {
         return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
     }
