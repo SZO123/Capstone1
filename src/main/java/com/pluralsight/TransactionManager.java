@@ -10,7 +10,7 @@ import java.util.List;
 public class TransactionManager {
 
     private static final DateTimeFormatter date_Format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final DateTimeFormatter time_Format = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private static final DateTimeFormatter time_Format = DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS");
 
     public static List<Transaction> loadTransactionFromFile (String filename) {
         List<Transaction> transactions = new ArrayList<>();
