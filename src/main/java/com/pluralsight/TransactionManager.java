@@ -11,7 +11,7 @@ public class TransactionManager {
 
     // Date and time formats for saving/loading
     private static final DateTimeFormatter date_Format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final DateTimeFormatter time_Format = DateTimeFormatter.ofPattern("HH:mm:ss.SSSSSS");
+    private static final DateTimeFormatter time_Format = DateTimeFormatter.ofPattern("HH:mm");
 
     // Load transactions from a file
     public static List<Transaction> loadTransactionFromFile (String filename) {
