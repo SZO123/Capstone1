@@ -13,28 +13,60 @@ public class TransactionManager {
     private static final DateTimeFormatter date_Format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter time_Format = DateTimeFormatter.ofPattern("HH:mm");
 
-    // Load transactions from a file
-    public static List<Transaction> loadTransactionFromFile (String filename) {
+
+    // Load transactions from a file safely
+    public static List<Transaction> loadTransactionFromFile(String filename) {
         List<Transaction> transactions = new ArrayList<>();
         File file = new File(filename);
-        if (!file.exists()) return transactions; // Return empty list if file not found
+
+        // Return empty list if file not found
+        if (!file.exists()) {
+            System.out.println("No file found (" + filename + "). A new one will be created later.");
+            return transactions;
+        }
+
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFormat12 = DateTimeFormatter.ofPattern("hh:mm a");
+        DateTimeFormatter timeFormat24 = DateTimeFormatter.ofPattern("HH:mm");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
+            String line = reader.readLine(); // skip header if present
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\|"); // Split line by '|'
-                LocalDate date = LocalDate.parse(parts[0], date_Format);
-                LocalTime time = LocalTime.parse(parts[1], time_Format);
-                String description = parts[2];
-                String vendor = parts[3];
-                double amount = Double.parseDouble(parts[4]);
+                // Support both comma and pipe separators
+                String[] parts = line.split("[,|]");
+                if (parts.length < 5) continue; // skip bad lines
+
+                LocalDate date = LocalDate.parse(parts[0].trim(), dateFormat);
+
+                // Try both time formats (e.g. "08:29 PM" or "20:29")
+                LocalTime time;
+                String timeStr = parts[1].trim();
+                try {
+                    time = LocalTime.parse(timeStr, timeFormat24);
+                } catch (Exception e) {
+                    time = LocalTime.parse(timeStr, timeFormat12);
+                }
+
+                String description = parts[2].trim();
+                String vendor = parts[3].trim();
+
+                // Handle possible currency symbols in amount
+                String amtStr = parts[4].replace("$", "").replace(",", "").trim();
+                double amount = Double.parseDouble(amtStr);
+
                 transactions.add(new Transaction(date, time, description, vendor, amount));
             }
+
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Parsing error: " + e.getMessage());
         }
+
+
         return transactions;
     }
+
 
     // Save a transaction to the file
     public static void saveTransaction(String filename, Transaction transaction) {
