@@ -60,7 +60,6 @@ If running from an IDE, set the main class to **`com.pluralsight.LedgerApp`**.
 - Validate numeric input with retry prompts.
 - Extract constants for menus and messages.
 - Add unit tests for `TransactionManager` parsing and filters.
-- Replace flat-file with H2/SQLite and add running balance.
 
 <img width="278" height="181" alt="image" src="https://github.com/user-attachments/assets/1a350909-ab0e-41c8-b654-23e6771e32f6" />
 
