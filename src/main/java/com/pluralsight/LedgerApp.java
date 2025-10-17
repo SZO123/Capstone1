@@ -32,10 +32,10 @@ public class LedgerApp {
         System.out.println("==========================================");
 
         String options = """
-                1) Add Deposit
-                2) Make Payment
-                3) Ledger
-                4) Exit
+                1) Add Deposit (Press 1 to deposit)
+                2) Make Payment (Press 2 to make payment)
+                3) Ledger (Press 3 to see ledger)
+                4) Exit (Press 4 to exit)
                 """;
         int choice = getNumericChoice(options);
 
