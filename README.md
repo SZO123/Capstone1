@@ -62,3 +62,17 @@ If running from an IDE, set the main class to **`com.pluralsight.LedgerApp`**.
 - Add unit tests for `TransactionManager` parsing and filters.
 - Replace flat-file with H2/SQLite and add running balance.
 
+<img width="278" height="181" alt="image" src="https://github.com/user-attachments/assets/1a350909-ab0e-41c8-b654-23e6771e32f6" />
+
+<img width="278" height="143" alt="image" src="https://github.com/user-attachments/assets/c8173c86-908f-486a-9e53-20c2cd550b09" />
+
+<img width="313" height="208" alt="image" src="https://github.com/user-attachments/assets/2bffdfff-7a6e-47e6-8a96-ff96b2be6ed2" />
+
+<img width="313" height="218" alt="image" src="https://github.com/user-attachments/assets/08431b2f-464a-48ee-b96d-b2eb67192290" />
+
+<img width="313" height="216" alt="image" src="https://github.com/user-attachments/assets/cb329f23-e5d3-4d84-ba1f-094949b8044b" />
+
+<img width="313" height="214" alt="image" src="https://github.com/user-attachments/assets/5f9cfe6a-01d6-4c85-b6d0-a781afeeff98" />
+
+
+
