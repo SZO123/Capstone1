@@ -74,7 +74,7 @@ public class TransactionManager {
             writer.write(transaction.toString());
             writer.newLine();
         } catch (IOException e) {
-            System.out.println("Error writing transaction: " + e.getMessage());
+            System.out.println("Error writing transaction:" + e.getMessage());
 
             }
         }
