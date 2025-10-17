@@ -129,18 +129,23 @@ public class LedgerApp {
             int choice = getNumericChoice(options);
 
             switch (choice) {
-                case 1:
-                    System.out.println("MTD report ");
+                case 1: // Month To Date
+                    List<Transaction> mtd = TransactionManager.filterByMonthToDate(transactions);
+                    TransactionManager.displayTransaction(mtd, "ALL");
                     break;
-                case 2:
-                    System.out.println("Previous Month report ");
-                case 3:
-                    System.out.println("YTD report ");
+                case 2: // Previous Month
+                    List<Transaction> prevMonth = TransactionManager.filterByPreviousMonth(transactions);
+                    TransactionManager.displayTransaction(prevMonth, "ALL");
                     break;
-                case 4:
-                    System.out.println("Previous Year report ");
+                case 3: // Year To Date
+                    List<Transaction> ytd = TransactionManager.filterByYearToDate(transactions);
+                    TransactionManager.displayTransaction(ytd, "ALL");
                     break;
-                case 5:
+                case 4: // Previous Year
+                    List<Transaction> prevYear = TransactionManager.filterByPreviousYear(transactions);
+                    TransactionManager.displayTransaction(prevYear, "ALL");
+                    break;
+                case 5: // Search by Vendor
                     System.out.print("Enter vendor name: ");
                     String vendor = scanner.nextLine();
                     List<Transaction> filtered = TransactionManager.filterByVendor(transactions, vendor);
@@ -151,7 +156,6 @@ public class LedgerApp {
                     break;
                 default:
                     System.out.println("Invalid choice.");
-
             }
         }
     }
